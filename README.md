@@ -1,6 +1,6 @@
 # SysY in Docker
 
-LLVM 及 ARM 编译/运行环境，基于 ubuntu 镜像构建，内置有 Clang, LLVM 编译器以及运行 ARM ELF 的 QEMU 模拟器。
+LLVM，ARM 和 RISC-V64 编译/运行环境，基于 ubuntu 镜像构建，内置有 Clang, LLVM, GCC 编译器以及 QEMU 模拟器。
 
 SysY 动态链接库 `sylib` 已经内置在 Docker 镜像中，位于 `/usr/share/sylib`。
 
@@ -8,7 +8,8 @@ SysY 动态链接库 `sylib` 已经内置在 Docker 镜像中，位于 `/usr/sha
 
 本镜像内置了若干方便使用的脚本:
 
-> 重要‼️ 使用前请先指定环境变量 `ARCH`，可以是 `arm` 或 `riscv` 或 `riscv64`。当然若只生成到 IR 可以不用。
+> 重要‼️ 使用前请先指定环境变量 `ARCH`，可以是 `arm` 或 `riscv` (等同于 `riscv64`)。当然若只生成到 IR 可以不用。
+> 如: `ARCH=riscv sysy-elf.sh test.sy`
 
 - `sysy-llvm.sh`: 由 SysY 源代码生成 LLVM IR
 - `sysy-asm.sh`: 由 SysY 源代码生成 arm 汇编 (交叉 gcc)
