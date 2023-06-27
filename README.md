@@ -8,6 +8,8 @@ SysY 动态链接库 `sylib` 已经内置在 Docker 镜像中，位于 `/usr/sha
 
 本镜像内置了若干方便使用的脚本:
 
+> 重要‼️ 使用前请先指定环境变量 `ARCH`，可以是 `arm` 或 `riscv` 或 `riscv64`。当然若只生成到 IR 可以不用。
+
 - `sysy-llvm.sh`: 由 SysY 源代码生成 LLVM IR
 - `sysy-asm.sh`: 由 SysY 源代码生成 arm 汇编 (交叉 gcc)
 - `sysy-asm-clang.sh`: 由 SysY 源代码生成 arm 汇编 (clang)
@@ -50,9 +52,11 @@ SysY 动态链接库 `sylib` 已经内置在 Docker 镜像中，位于 `/usr/sha
 
 （注：如需将主机的代码目录挂载到容器内，可直接传入要挂载的主机目录，例如 `./docker-start.sh /path/to/your/code`，挂载到容器内的 `~/sysy` 目录中）
 
-在容器内可以使用 vim 编辑文件，如使用挂载目录方式则可直接在主机上编辑文件并在容器内编译及运行。
+> 为了保持简洁，`vim` 被删掉啦。
 
 ## 使用 qemu 和 gdb 调试
+
+> 为了保持简洁，`gdb` 也删掉了。可以考虑端口转发 + 外部 `gdb`。
 
 容器内安装了 `gdb-multiarch` 。这里使用 `qemu-user` 启动内置的 gdb server 并通过 `gdb-multiarch` 连接 qemu 进行调试。
 

@@ -9,4 +9,7 @@ fi
 
 ELF=$1
 
+SHELL_FOLDER=$(cd "$(dirname "$0")"; pwd)
+source ${SHELL_FOLDER}/sysy-arch-flags.sh
+
 qemu-${ARCH} $ELF

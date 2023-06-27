@@ -7,6 +7,9 @@ if ! [ $1 ]; then
     exit 1
 fi
 
+SHELL_FOLDER=$(cd "$(dirname "$0")"; pwd)
+source ${SHELL_FOLDER}/sysy-arch-flags.sh
+
 CODE_FILE=$1
 
 NAME="${CODE_FILE%.*}"
@@ -21,4 +24,4 @@ else
     exit 1
 fi
 
-clang ${CLANG_ARCH_FLAGS} ${SYLIB_INCLUDE_FLAG} -S -o $NAME.S $SOURCE
+clang ${CLANG_ARCH_FLAGS} ${SYLIB_INCLUDE_FLAG} -S -o $NAME.S $SOURCE ${CLANG_OPT_FLAGS}

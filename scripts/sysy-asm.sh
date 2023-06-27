@@ -7,6 +7,9 @@ if ! [ $1 ]; then
     exit 1
 fi
 
+SHELL_FOLDER=$(cd "$(dirname "$0")"; pwd)
+source ${SHELL_FOLDER}/sysy-arch-flags.sh
+
 CODE_FILE=$1
 
 NAME="${CODE_FILE%.*}"
@@ -21,4 +24,4 @@ else
     exit 1
 fi
 
-${ARCH_NAME}-gcc -march=armv7-a ${SYLIB_INCLUDE_FLAG} -S -o $NAME.S $SOURCE
+${ARCH_NAME}-gcc ${GCC_ARCH_FLAGS} ${SYLIB_INCLUDE_FLAG} -S -o $NAME.S $SOURCE ${GCC_OPT_FLAGS}

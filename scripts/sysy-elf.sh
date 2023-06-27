@@ -9,6 +9,9 @@ fi
 
 CODE_FILE=$1
 
+SHELL_FOLDER=$(cd "$(dirname "$0")"; pwd)
+source ${SHELL_FOLDER}/sysy-arch-flags.sh
+
 NAME="${CODE_FILE%.*}"
 SUFFIX="${CODE_FILE##*.}"
 
@@ -23,4 +26,4 @@ else
     exit 1
 fi
 
-${ARCH_NAME}-gcc -march=armv7-a --static ${SYLIB_INCLUDE_FLAG} -o $NAME.elf $SOURCE ${SYLIB_PATH}/sylib.a
+${ARCH_NAME}-gcc ${GCC_ARCH_FLAGS} --static ${SYLIB_INCLUDE_FLAG} -o $NAME.elf $SOURCE ${SYLIB_PATH}/sylib_${ARCH}.a
