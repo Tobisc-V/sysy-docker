@@ -18,4 +18,4 @@ if ! [ $SUFFIX == "S" -o $SUFFIX == "s" -o $SUFFIX == "asm" ]; then
     exit 1
 fi
 
-${ARCH_NAME}-gcc ${GCC_ARCH_FLAGS} --static ${SYLIB_INCLUDE_FLAG} -o $NAME.elf $SOURCE ${SYLIB_PATH}/sylib_${ARCH}.a
+${ARCH_NAME}-gcc ${GCC_ARCH_FLAGS} --static -o $NAME.elf $CODE_FILE ${SYLIB_PATH}/sylib_${ARCH}.a
