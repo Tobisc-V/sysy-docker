@@ -15,6 +15,8 @@ ARG PACKAGES="clang llvm lld qemu-user \
     gcc-${ARM_NAME} binutils-${ARM_NAME} qemu-system-${ARM} \
     gcc-${RISCV_NAME} binutils-${RISCV_NAME} qemu-system-${RISCV}"
 
+RUN sed -i "s/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g" /etc/apt/sources.list
+
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y tzdata && \
     apt-get install -y ${PACKAGES}
