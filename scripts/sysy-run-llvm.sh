@@ -17,5 +17,5 @@ if ! [ $SUFFIX == "ll" ]; then
     exit 1
 fi
 
-llvm-link $IR_FILE $SYLIB_PATH/sylib.ll -o $NAME.sylib.bc
-lli $NAME.sylib.bc
+llvm-link -opaque-pointers $IR_FILE $SYLIB_PATH/sylib.ll -o $NAME.sylib.bc
+lli -opaque-pointers $NAME.sylib.bc
