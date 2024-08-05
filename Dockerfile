@@ -11,15 +11,17 @@ ENV CLANG_ARM_LINK_FLAGS="-fuse-ld=lld -static"
 ENV CLANG_RISCV_LINK_FLAGS="-static"
 # Install necessary software
 
-ARG PACKAGES="clang llvm lld qemu-user \
+ENV PACKAGES_0="clang llvm lld qemu-user"
+ARG PACKAGES=" \
     gcc-${ARM_NAME} binutils-${ARM_NAME} qemu-system-${ARM} \
     gcc-${RISCV_NAME} binutils-${RISCV_NAME} qemu-system-${RISCV}"
 
-RUN sed -i "s/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g" /etc/apt/sources.list
+# RUN sed -i "s/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g" /etc/apt/sources.list
 
 RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y tzdata && \
-    apt-get install -y ${PACKAGES}
+    DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y tzdata
+RUN apt-get install -y ${PACKAGES_0}
+RUN apt-get install -y ${PACKAGES}
 # Load sysy library
 ENV SYLIB_PATH=/usr/share/sylib
 ENV SYLIB_INCLUDE_FLAG="-I${SYLIB_PATH}"
